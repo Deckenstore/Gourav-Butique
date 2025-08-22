@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gourav Boutique</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      line-height: 1.6; background: #faf7ff; color: #333;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background: linear-gradient(120deg, #5e2b97, #8b48c9);
+      color: white; text-align: center; padding: 60px 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    header h1 { font-size: 2.8rem; margin-bottom: 10px; letter-spacing: 1px; }
+    header p { font-size: 1.2rem; color: #f3e8ff; }
+
+    nav {
+      background: #3a1d59; padding: 12px; text-align: center; position: sticky; top: 0; z-index: 1000;
+    }
+    nav a {
+      color: white; text-decoration: none; margin: 0 18px; font-weight: bold;
+      position: relative; padding: 6px 4px;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      color: #fff;
+      background: #2a0f47;   /* Darker Purple on hover */
+      border-radius: 6px;
+      padding: 6px 10px;
+    }
+
+    section { padding: 60px 20px; max-width: 1000px; margin: auto; }
+    section h2 { text-align: center; margin-bottom: 30px; color: #5e2b97; font-size: 2rem; }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background: #fff; padding: 20px; border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
+    .card img { width: 100%; border-radius: 10px; margin-bottom: 15px; transition: transform 0.4s ease; }
+    .card img:hover { transform: scale(1.05); }
+    .card h3 { margin-bottom: 10px; color: #8b48c9; }
+
+    #contact .card {
+      background: #f9f5ff;
+      border-left: 6px solid #8b48c9;
+    }
+
+    footer {
+      background: #3a1d59; color: white; text-align: center; padding: 18px; font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Banner -->
+<header>
+  <h1>Gourav Boutique</h1>
+  <p>Professional Stitching & Custom Tailoring Services</p>
+</header>
+
+<!-- Navigation -->
+<nav>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- About -->
+<section id="about">
+  <h2>About Us</h2>
+  <p style="text-align:center; max-width:700px; margin:auto;">
+    Hamari dukaan me aapko har tarah ki <strong>ladies aur kids stitching services</strong> milengi.  
+    Customized design, alteration aur perfect fitting hamari pehchaan hai.  
+    Hum quality fabric aur finishing ke saath best tailoring service dete hain.
+  </p>
+</section>
+
+<!-- Services -->
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="card">
+      <img src="Dress Stitching" alt="Dress Stitching">
+      <h3>Dress Stitching</h3>
+      <p>Daily wear aur designer dresses ka stitching with perfect fitting.</p>
+    </div>
+    <div class="card">
+      <img src="Blouse Design" alt="Blouse Design">
+      <h3>Blouse Design</h3>
+      <p>Latest blouse designs aur customized patterns.</p>
+    </div>
+    <div class="card">
+      <img src="Alteration" alt="Alteration">
+      <h3>Alteration</h3>
+      <p>Purane kapdon ka alteration aur perfect fitting ka solution.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="card">
+    <h2>Contact</h2>
+    <p>🏪 Shop Name: <strong>Gourav Boutique</strong></p>
+    <p>📞 Phone: <strong>+91 9988720946</strong></p>
+    <p>
+      📍 Address:&nbsp;
+      <a href="https://www.google.com/maps/search/?api=1&query=Gourav+Boutique,+St+no.+1,+Ram+Nagar,+Mundiyan+Kalan,+Ludhiana,+Punjab"
+         target="_blank"
+         style="color:#5e2b97; font-weight:bold; text-decoration:none; transition:0.3s;">
+         Gourav Boutique, St no. 1, Ram Nagar, Mundiyan Kalan, Ludhiana, Punjab
+      </a>
+    </p>
+    <p>
+      <a href="https://www.google.com/maps/search/?api=1&query=Gourav+Boutique,+St+no.+1,+Ram+Nagar,+Mundiyan+Kalan,+Ludhiana,+Punjab"
+         target="_blank"
+         style="display:inline-block; margin-top:10px; padding:10px 20px;
+                background:#5e2b97; color:white; border-radius:8px;
+                text-decoration:none; font-weight:bold; transition:0.3s;">
+        📍 Visit Gourav Boutique
+      </a>
+    </p>
+  </div>
+</section>
+
+
+
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Gourav Boutique | All Rights Reserved</p>
+</footer>
+
+</body>
+  </html>
