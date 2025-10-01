@@ -5,70 +5,248 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gourav Boutique</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-      line-height: 1.6; background: #faf7ff; color: #333;
-      animation: fadeIn 1s ease-in;
-    }
+  
+/* Reset & Base */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: rgb(226,255,250);
+  color: #333;
+  scroll-behavior: smooth;
+  line-height:1.6;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+/* Links */
+a { text-decoration:none; color: inherit; }
 
-    header {
-      background: linear-gradient(120deg, #5e2b97, #8b48c9);
-      color: white; text-align: center; padding: 60px 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-    header h2 { font-size: 1.8rem; margin-bottom: 10px; letter-spacing: 1px; }
-    header p { font-size: 1.2rem; color: #f3e8ff; }
+/* Header */
+header {
+  background: linear-gradient(180deg, rgb(0,119,99),rgba(125,255,234,0.704));
+  color:white;
+  text-align:center;
+  padding:100px 20px 80px;
+  position: relative;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  transition: all 0.5s ease;
+}
 
-    nav {
-      background: #3a1d59; padding: 12px; text-align: center; position: sticky; top: 0; z-index: 1000;
-    }
-    nav a {
-      color: white; text-decoration: none; margin: 0 18px; font-weight: bold;
-      position: relative; padding: 6px 4px;
-      transition: all 0.3s ease;
-    }
-    nav a:hover {
-      color: #fff;
-      background: #2a0f47;   /* Darker Purple on hover */
-      border-radius: 6px;
-      padding: 6px 10px;
-    }
+header h2 {
+  color: rgba(24,24,24,0.898);
+  font-size:2.8rem;
+  margin-bottom:15px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-shadow: 1px 1px 6px rgb(255,255,255);
+}
 
-    section { padding: 60px 20px; max-width: 1000px; margin: auto; }
-    section h2 { text-align: center; margin-bottom: 30px; color: #5e2b97; font-size: 2rem; }
+header p {
+  font-size:1.2rem;
+  color: #e0fff9;
+  margin-bottom:30px;
+}
 
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-    .card {
-      background: #fff; padding: 20px; border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-    }
-    .card img { width: 100%; border-radius: 10px; margin-bottom: 15px; transition: transform 0.4s ease; }
-    .card img:hover { transform: scale(1.05); }
-    .card h3 { margin-bottom: 10px; color: #8b48c9; }
+header a.button {
+  display:inline-block;
+  padding:16px 36px;
+  background: #fff;
+  color: rgb(0,0,0);
+  border-radius:50px;
+  font-weight:600;
+  font-size:1rem;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  transition: all 0.4s ease;
+}
+header a.button:hover {
+  background: rgba(0,159,134,0.338);
+  transform:translateY(-6px) scale(1.05);
+  box-shadow:0 14px 28px rgba(0,0,0,0.2);
+}
 
-    #contact .card {
-      background: #f9f5ff;
-      border-left: 6px solid #8b48c9;
-    }
+/* Navigation */
+nav {
+  background: rgb(0,229,191);
+  backdrop-filter: blur(10px);
+  padding:12px 0;
+  text-align:center;
+  position:sticky;
+  top:10px;
+  margin:0 10px;
+  border-radius:7.5px;
+  z-index:10000;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+  transition: all 0.3s ease;
+}
+nav a {
+  color: rgba(0,0,0,0.8);
+  font-weight:600;
+  margin:0 16px;
+  padding:8px 14px;
+  border-radius:12px;
+  transition: all 0.3s ease;
+}
+nav a:hover {
+  background: rgba(15,255,216,0.2);
+  transform:scale(1.08);
+}
 
-    footer {
-      background: #3a1d59; color: white; text-align: center; padding: 18px; font-size: 0.9rem;
-    }
+/* Sections */
+section {
+  padding:80px 20px;
+  max-width:1100px;
+  margin:auto;
+  transition: all 0.5s ease;
+}
+section h2 {
+  text-align:center;
+  margin-bottom:50px;
+  color: rgba(0,119,99,0.9);
+  font-size:2rem;
+  position:relative;
+}
+section h2::after {
+  content:"";
+  width:80px;
+  height:4px;
+  background: rgba(15,255,216,0.6);
+  display:block;
+  margin:12px auto 0;
+  border-radius:2px;
+}
+section p {
+  text-align:center;
+  max-width:750px;
+  margin:auto;
+  font-size:1rem;
+  color:#555;
+}
+
+/* Services Cards */
+.services {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:28px;
+  margin-top:20px;
+}
+.card {
+  background: rgba(15,255,216,0.536); /* Normal Light Color */
+  padding:28px 22px;
+  border-radius:25px;
+  box-shadow:0 15px 35px rgba(15,255,216,0.25);
+  text-align:center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.6s ease, color 0.4s ease;
+}
+.card:hover {
+  transform:translateY(-12px) scale(1.04);
+  box-shadow:0 22px 45px rgb(147,255,237);
+  background: rgb(0,109,91); /* Dark Color on Hover */
+  color:white;
+}
+.card img {
+  width:100%;
+  border-radius:18px;
+  margin-bottom:18px;
+  transition: transform 0.4s ease;
+}
+.card img:hover { transform:scale(1.08); }
+.card h3 {
+  margin-bottom:12px;
+  color:#004d40;
+  font-size:1.4rem;
+  font-weight:600;
+  transition:color 0.4s ease;
+}
+.card:hover h3 { color: rgb(0,0,0); }
+.card p {
+  font-size:1rem;
+  color:#333;
+  transition:color 0.4s ease;
+}
+.card:hover p { color: #e0f7f4; }
+
+/* Contact section card */
+.contact-card {
+  background: rgba(15,255,216,0.536);
+  color: #000; /* normal state me dark text clear dikhai de */
+  padding: 20px;
+  border-radius: 10px;
+  transition: 0.4s ease;
+}
+
+.contact-card:hover {
+  background: rgba(0,119,99,0.536);
+  color: #fff; /* hover ke baad text white kar diya for better visibility */
+}
+
+/* Agar button bhi hai contact section me */
+.contact-card button {
+  background: #fff;
+  color: #007763;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-card button:hover {
+  background: #007763;
+  color: #fff;
+}
+/* Normal state */
+#contact a.button {
+  display:inline-block;
+  margin-top:20px;
+  padding:14px 32px;
+  background: rgb(0,109,92);   /* Red */
+  color: #fff;                /* White text */
+  border-radius:18px;
+  font-weight:600;
+  transition:0.3s ease;
+  text-decoration: none;
+}
+
+/* Hover state */
+#contact a.button:hover {
+  background: rgb(0,207,173);   /* Greenish shade */
+  color: yellow;               /* Text color change on hover */
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(135deg, rgba(15,255,216,0.536), rgba(0,119,99,0.536));
+  color:white;
+  text-align:center;
+  padding:24px;
+  font-size:0.95rem;
+  margin-top:40px;
+  letter-spacing:0.5px;
+  box-shadow:0 -4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media(max-width:768px){
+  header h2 { font-size:2.4rem; }
+  header p { font-size:1.1rem; }
+  nav a { margin:0 10px; padding:6px 10px; font-size:0.95rem; }
+}
+@media(max-width:480px){
+  header { padding:70px 15px 60px; }
+  header h2 { font-size:1.8rem; }
+  header p { font-size:1rem; }
+  header a.button { padding:12px 24px; font-size:0.9rem; }
+  .services { gap:20px; }
+  section h2 { font-size:1.7rem; }
+}
+#contact h2 {
+  color: #002e2c; /* hover par dark green */
+  transform: scale(1.05);
+  transition: 0.3s ease;
+}
   </style>
 </head>
 <body>
@@ -77,6 +255,8 @@
 <header>
   <h2>Gourav Boutique</h2>
   <p>Professional Stitching & Custom Tailoring Services</p>
+  <a href="https://wa.me/919988720946?text=Hello%20Gourav%20Boutique%21%20I%20saw%20your%20website%20and%20I%20am%20interested%20in%20booking%20a%20custom%20stitching%20service%20for%20my%20clothes.%20Please%20guide%20me%20with%20details%2C%20pricing%2C%20and%20availability.%20Thank%20you%21" 
+   class="button" target="_blank">Book Your Service</a>
 </header>
 
 <!-- Navigation -->
@@ -89,7 +269,7 @@
 <!-- About -->
 <section id="about">
   <h2>About Us</h2>
-  <p style="text-align:center; max-width:700px; margin:auto;">
+  <p>
     Hamari dukaan me aapko har tarah ki <strong>ladies aur kids stitching services</strong> milengi.  
     Customized design, alteration aur perfect fitting hamari pehchaan hai.  
     Hum quality fabric aur finishing ke saath best tailoring service dete hain.
@@ -101,49 +281,38 @@
   <h2>Our Services</h2>
   <div class="services">
     <div class="card">
-      <img src="Dress Stitching.png" alt="Dress Stitching">
-      <h3>Dress Stitching</h3>
-      <p>Daily wear aur designer dresses ka stitching with perfect fitting.</p>
-    </div>
-    <div class="card">
       <img src="Blouse Design.png" alt="Blouse Design">
       <h3>Blouse Design</h3>
       <p>Latest blouse designs aur customized patterns.</p>
     </div>
     <div class="card">
-      <img src="Alteration.png" alt="Alteration">
-      <h3>Alteration</h3>
-      <p>Purane kapdon ka alteration aur perfect fitting ka solution.</p>
+      <img src="Dress Stitching.png" alt="Dress Stitching">
+      <h3>Dress Stitching</h3>
+      <p>Daily wear aur designer dresses ka stitching with perfect fitting.</p>
     </div>
+    <div class="card">
+  <img src="Bridal-Lehenga.png" alt="Bridal Lehenga">
+  <h3>Bride Lehenga</h3>
+  <p>Shaadi ke liye khubsurat aur customized bridal lehenga stitching service.</p>
+</div>
   </div>
 </section>
 
+<!-- Contact -->
 <section id="contact">
   <div class="card">
     <h2>Contact</h2>
     <p>🏪 Shop Name: <strong>Gourav Boutique</strong></p>
     <p>📞 Phone: <strong>+91 9988720946</strong></p>
     <p>
-      📍 Address:&nbsp;
+      📍 Address: 
       <a href="https://www.google.com/maps/search/?api=1&query=Gourav+Boutique,Ramnagar+Gali+Number+1, Ram+Nagar, Mundian, Ludhiana, Punjab+141014"   
-         target="_blank"
-         style="color:#5e2b97; font-weight:bold; text-decoration:none; transition:0.3s;">
-         Gourav Boutique, Ramnagar</a>
+         target="_blank">Gourav Boutique, Ramnagar</a>
     </p>
-    <p>
-      <a href="https://www.google.com/maps/search/?api=1&query=Gourav+Boutique,Ramnagar+Gali+Number+1, Ram+Nagar, Mundian, Ludhiana, Punjab+141014"
-         target="_blank"
-         style="display:inline-block; margin-top:10px; padding:10px 20px;
-                background:#5e2b97; color:white; border-radius:8px;
-                text-decoration:none; font-weight:bold; transition:0.3s;">
-        📍 Visit Gourav Boutique
-      </a>
-    </p>
+    <a href="https://www.google.com/maps/search/?api=1&query=Gourav+Boutique,Ramnagar+Gali+Number+1, Ram+Nagar, Mundian, Ludhiana, Punjab+141014" 
+       target="_blank" class="button">📍 Visit Gourav Boutique</a>
   </div>
 </section>
-
-
-
 
 <!-- Footer -->
 <footer>
@@ -151,4 +320,4 @@
 </footer>
 
 </body>
-        </html>
+</html>
