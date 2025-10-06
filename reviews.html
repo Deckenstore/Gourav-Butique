@@ -99,6 +99,21 @@
       .video-section video{height:220px;}
       .image-scroll img{height:280px;}
     }
+    .insta-video-wrapper {
+  max-width: 480px;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.insta-video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
   </style>
 </head>
 <body>
@@ -164,14 +179,18 @@
   <button class="scroll-btn right">&#8594;</button>
 </section>
 
-<!-- Video Section -->
+
 <section class="video-section" id="video">
   <h2>See Our Work</h2>
-  <video controls>
-    <source src="week.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <div class="insta-video-wrapper">
+    <iframe src="https://www.instagram.com/reel/DPdKG6GEUoI/embed?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==" 
+            style="border:none; overflow:hidden;" 
+            allowfullscreen 
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+    </iframe>
+  </div>
 </section>
+
 
 <!-- Footer -->
 <footer id="contact">
