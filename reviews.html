@@ -147,14 +147,14 @@
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
-
 .video-thumbnail img {
   width: 100%;
   display: block;
   border-radius: 12px;
-  object-fit: cover;
-  aspect-ratio: 9 / 16;
+  object-fit: contain; /* cover → contain, ताकि पूरा image दिखे */
+  aspect-ratio: 16 / 9; /* landscape */
 }
+.
 
 .play-button {
   position: absolute;
