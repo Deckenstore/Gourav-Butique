@@ -6,7 +6,7 @@
   <title>Customer Reviews | Gourav Boutique</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
-    /* Base styles */
+    /* Base Styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Poppins', sans-serif; background: rgb(226,255,250); color: #333; line-height: 1.6; scroll-behavior: smooth; }
     a { text-decoration: none; }
@@ -48,23 +48,6 @@
     section h2 { text-align: center; font-size: 2rem; color: rgba(0,119,99,0.9); margin-bottom: 40px; position: relative;}
     section h2::after { content: ""; width: 80px; height: 4px; background: rgba(15,255,216,0.6); display: block; margin: 10px auto 0; border-radius: 2px; }
 
-    /* Reviews */
-    .reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 25px; }
-    .review-card { background: rgba(15,255,216,0.3); border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); transition: 0.3s; transform: translateY(30px); opacity: 0; }
-    .review-card.show { transform: translateY(0); opacity: 1; }
-    .review-card:hover { transform: translateY(-5px); background: rgba(0,119,99,0.5); color: white; }
-    .review-card h3 { margin-bottom: 5px; font-size: 1.2rem; color: #004d40; }
-    .review-card p { font-size: 0.95rem; color: #333; }
-    .review-card .stars { color: #ffb400; margin-bottom: 10px; }
-    .review-card:hover h3, .review-card:hover p { color: white; }
-
-    /* CTA Button */
-    .cta { text-align: center; margin-top: 40px; }
-    .cta a { display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, #00c6a7, #00ffd8); color: white; border-radius: 30px; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 8px 20px rgba(0, 204, 191, 0.3); transition: all 0.4s ease; position: relative; overflow: hidden; }
-    .cta a::before { content: ""; position: absolute; top: 0; left: -75%; width: 50%; height: 100%; background: rgba(255, 255, 255, 0.3); transform: skewX(-25deg); transition: 0.5s; }
-    .cta a:hover::before { left: 150%; }
-    .cta a:hover { background: linear-gradient(135deg, #00ffd8, #00c6a7); box-shadow: 0 12px 28px rgba(0, 204, 191, 0.4); transform: scale(1.08); color: #fff; }
-
     /* Gallery Section */
     .gallery-section { position: relative; }
     .image-scroll { display: flex; overflow-x: auto; gap: 16px; padding: 20px 10px; scroll-behavior: smooth; }
@@ -77,99 +60,52 @@
 
     /* Video Section */
     .video-section { text-align: center; padding: 30px 0; }
-    .video-section video { width: 100%; max-width: 480px; aspect-ratio: 9 / 16; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .video-section .video-thumbnail { position: relative; max-width: 480px; margin: 0 auto; cursor: pointer; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .video-section .video-thumbnail img { width: 100%; display: block; border-radius: 12px; object-fit: contain; aspect-ratio: 16 / 9; }
+    .video-section .play-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4rem; color: white; background: rgba(0,0,0,0.6); border-radius: 50%; padding: 16px 24px; pointer-events: none; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 
     /* Footer */
     footer { background: linear-gradient(135deg, rgba(15,255,216,0.536), rgba(0,119,99,0.536)); color: white; text-align: center; padding: 24px; font-size: 0.95rem; margin-top: 40px; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); }
 
-    /* Fullscreen Image Viewer */
-    #imageViewer { display: none; position: fixed; z-index: 99999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; padding: 20px; }
-    #imageViewer img { max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 0 25px rgba(0,255,225,0.2); }
-    #closeBtn { position: absolute; top: 20px; right: 30px; font-size: 2rem; color: white; cursor: pointer; z-index: 100000; user-select: none; }
-    #closeBtn:hover { color: red; }
+    /* Fullscreen Image & Video Viewer */
+    #imageViewer, #videoViewer { display: none; position: fixed; z-index: 99999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; padding: 20px; }
+    #imageViewer img, #fullVideo { max-width: 90%; max-height: 90%; border-radius: 12px; box-shadow: 0 0 25px rgba(0,255,225,0.2); }
+    #closeBtn, #closeVideoBtn { position: absolute; top: 20px; right: 30px; font-size: 2rem; color: white; cursor: pointer; z-index: 100000; user-select: none; }
+    #closeBtn:hover, #closeVideoBtn:hover { color: red; }
 
     /* Back to Top */
     #backTop { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #00c6a7, #00ffd8); color: white; padding: 12px 16px; border-radius: 40%; cursor: pointer; font-size: 1.6rem; display: none; z-index: 9999; box-shadow: 0 6px 18px rgba(0,0,0,0.3); transition: all 0.3s ease; }
     #backTop:hover { transform: scale(1.15); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
 
+    /* Review Form Modal */
+    #reviewFormContainer { display: none; position: fixed; z-index: 100000; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); justify-content:center; align-items:center; padding:20px; animation: fadeIn 0.4s; }
+    #reviewForm { background:white; padding: 30px; border-radius: 12px; max-width:400px; width:100%; box-shadow: 0 8px 20px rgba(0,0,0,0.25); transform: scale(0); animation: popIn 0.3s forwards; }
+    #reviewForm h3 { text-align:center; margin-bottom:20px; }
+    #reviewForm input, #reviewForm textarea { width:100%; padding:10px; margin:10px 0; border-radius:8px; border:1px solid #ccc; }
+    #reviewForm button { width:100%; padding:12px; border:none; border-radius:8px; background:linear-gradient(135deg, #00c6a7, #00ffd8); color:white; font-weight:700; font-size:1rem; cursor:pointer; }
+    #reviewForm button:hover { transform:scale(1.05); }
+    #closeFormBtn { position:absolute; top:20px; right:30px; font-size:1.8rem; cursor:pointer; color:white; }
+
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    @keyframes popIn { from {transform: scale(0);} to {transform: scale(1);} }
+
+    /* CTA */
+    .cta { text-align: center; margin-top: 40px; }
+    .cta button { padding: 12px 28px; font-size: 1rem; font-weight: 600; color: white; background: linear-gradient(135deg, #00c6a7, #00ffd8); border: none; border-radius: 25px; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.3); transition: all 0.3s ease; }
+    .cta button:hover { transform: scale(1.1); box-shadow: 0 10px 25px rgba(0,0,0,0.4); background: linear-gradient(135deg, #00ffd8, #00c6a7); }
+
     /* Responsive */
     @media(max-width:480px){
       header h2{font-size:2rem;}
       section h2{font-size:1.6rem;}
-      .video-section video{height:220px;}
+      .video-section .video-thumbnail img{height:220px;}
       .image-scroll img{height:280px;}
     }
-    .insta-video-wrapper {
-  max-width: 480px;
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  margin: 0 auto;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.insta-video-wrapper iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-    #videoViewer {
-  display: none;
-  position: fixed;
-  z-index: 99999;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-#closeVideoBtn {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
-  z-index: 100000;
-  user-select: none;
-}
-#closeVideoBtn:hover {
-  color: red;
-}
-.video-thumbnail {
-  position: relative;
-  max-width: 480px;
-  margin: 0 auto;
-  cursor: pointer;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-.video-thumbnail img {
-  width: 100%;
-  display: block;
-  border-radius: 12px;
-  object-fit: contain; /* cover → contain, ताकि पूरा image दिखे */
-  aspect-ratio: 16 / 9; /* landscape */
-}
-.
-
-.play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 4rem;
-  color: white;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 50%;
-  padding: 16px 24px;
-  pointer-events: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
   </style>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 <body>
 
@@ -197,28 +133,32 @@
 <!-- Reviews Section -->
 <section id="reviews">
   <h2>What Our Clients Say</h2>
-  <div class="reviews">
-    <div class="review-card">
-      <h3>Priya Sharma</h3>
-      <div class="stars">⭐⭐⭐⭐⭐</div>
-      <p>Blouse fitting was absolutely perfect! Service is quick and staff is very polite. Thank you Gourav Boutique!</p>
-    </div>
-    <div class="review-card">
-      <h3>Manpreet Kaur</h3>
-      <div class="stars">⭐⭐⭐⭐⭐</div>
-      <p>I got my bridal lehenga stitched here and it was exactly how I imagined. Highly recommend to all brides!</p>
-    </div>
-    <div class="review-card">
-      <h3>Ritika Jain</h3>
-      <div class="stars">⭐⭐⭐⭐⭐</div>
-      <p>Beautiful stitching for my daughter’s frock. Finishing was excellent. Definitely coming back again.</p>
-    </div>
-  </div>
-
+  <div class="reviews" id="reviewsContainer"></div>
   <div class="cta">
-    <a href="https://wa.me/919988720946?text=Hello%20Gourav%20Boutique%2C%20I%20would%20like%20to%20leave%20a%20review%20for%20your%20amazing%20stitching%20services!" target="_blank">Leave Your Review</a>
+    <button onclick="openReviewForm()">Give Your Review</button>
   </div>
 </section>
+<!-- Review Form Modal -->
+<div id="reviewFormContainer">
+  <div id="reviewForm">
+    <span id="closeFormBtn" onclick="closeReviewForm()">❌</span>
+    <h3>Submit Your Review</h3>
+    <input type="text" id="reviewerName" placeholder="Your Name" required>
+    
+    <!-- Star Rating -->
+    <div id="starRating" style="text-align:center; font-size:2rem; margin: 10px 0; cursor:pointer;">
+      <span data-value="1">☆</span>
+      <span data-value="2">☆</span>
+      <span data-value="3">☆</span>
+      <span data-value="4">☆</span>
+      <span data-value="5">☆</span>
+    </div>
+
+    <textarea id="reviewMessage" placeholder="Your Review" rows="4" required></textarea>
+    <button onclick="submitReview()">Submit</button>
+  </div>
+</div>
+
 
 <!-- Image Gallery -->
 <section class="gallery-section" id="gallery">
@@ -234,7 +174,7 @@
   <button class="scroll-btn right">&#8594;</button>
 </section>
 
-
+<!-- Video Section -->
 <section class="video-section" id="video">
   <h2>See Our Work</h2>
   <div class="video-thumbnail" onclick="openVideoViewer()">
@@ -243,92 +183,185 @@
   </div>
 </section>
 
-
 <!-- Footer -->
 <footer id="contact">
   <p>&copy; 2025 Gourav Boutique | All Rights Reserved</p>
 </footer>
 
-<!-- Fullscreen Image Viewer -->
+<!-- Fullscreen Image & Video Viewer -->
 <div id="imageViewer" onclick="closeImageViewer(event)">
   <span id="closeBtn" onclick="closeImageViewer(event)">❌</span>
   <img id="fullImage" src="" alt="Full View">
 </div>
-<!-- Fullscreen Video Viewer -->
 <div id="videoViewer" onclick="closeVideoViewer(event)">
   <span id="closeVideoBtn" onclick="closeVideoViewer(event)">❌</span>
-  <video id="fullVideo" controls autoplay style="max-width: 90%; max-height: 90%; border-radius: 12px; box-shadow: 0 0 25px rgba(0,255,225,0.2);"></video>
+  <video id="fullVideo" controls autoplay></video>
 </div>
+
 <!-- Back to Top -->
 <div id="backTop">⬆</div>
 
-<!-- JavaScript -->
+
 <script>
-  // Hamburger menu toggle
-  function toggleMenu(){
-    const links = document.getElementById('navLinks');
-    links.classList.toggle('show');
-  }
+// ==================== Hamburger Menu ====================
+function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('show');
+}
 
-  // Scroll animation for review cards
-  const cards = document.querySelectorAll('.review-card');
-  window.addEventListener('scroll', () => {
-    cards.forEach(card => {
-      const rect = card.getBoundingClientRect();
-      if(rect.top < window.innerHeight - 100) card.classList.add('show');
-    });
-  });
-
-  // Fullscreen image viewer
-  const imageViewer = document.getElementById('imageViewer');
-  const fullImage = document.getElementById('fullImage');
-  document.querySelectorAll('.image-scroll img').forEach(img => {
-    img.addEventListener('click', () => {
-      fullImage.src = img.src;
-      imageViewer.style.display = 'flex';
-    });
-  });
-  function closeImageViewer(e) {
-    if (e.target === imageViewer || e.target === document.getElementById('closeBtn')) {
-      imageViewer.style.display = 'none';
-      fullImage.src = "";
-    }
-  }
-
-  // Gallery scroll buttons
-  document.querySelector('.scroll-btn.left').onclick = () =>
-    document.querySelector('.image-scroll').scrollBy({left: -300, behavior: 'smooth'});
-
-  document.querySelector('.scroll-btn.right').onclick = () =>
-    document.querySelector('.image-scroll').scrollBy({left: 300, behavior: 'smooth'});
-
-  // Back to top button
-  const backTop = document.getElementById('backTop');
-  window.addEventListener('scroll', () => {
+// ==================== Back to Top ====================
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
     backTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-  });
-  backTop.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+});
+backTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Fullscreen video viewer
-  const videoViewer = document.getElementById('videoViewer');
-  const fullVideo = document.getElementById('fullVideo');
+// ==================== Fullscreen Image Viewer ====================
+const imageViewer = document.getElementById('imageViewer');
+const fullImage = document.getElementById('fullImage');
 
-  function openVideoViewer() {
-    fullVideo.src = "https://deckenstore.github.io/image-host/week.mp4"; // ✅ Make sure this file is in the same folder as your HTML
+document.querySelectorAll('.image-scroll img').forEach(img => {
+    img.addEventListener('click', () => {
+        fullImage.src = img.src;
+        imageViewer.style.display = 'flex';
+    });
+});
+
+function closeImageViewer(e) {
+    if (e.target === imageViewer || e.target === document.getElementById('closeBtn')) {
+        imageViewer.style.display = 'none';
+        fullImage.src = '';
+    }
+}
+
+// ==================== Fullscreen Video Viewer ====================
+const videoViewer = document.getElementById('videoViewer');
+const fullVideo = document.getElementById('fullVideo');
+
+function openVideoViewer() {
+    fullVideo.src = "https://deckenstore.github.io/image-host/week.mp4";
     videoViewer.style.display = 'flex';
     fullVideo.play();
-  }
+}
 
-  function closeVideoViewer(e) {
+function closeVideoViewer(e) {
     if (e.target === videoViewer || e.target === document.getElementById('closeVideoBtn')) {
-      videoViewer.style.display = 'none';
-      fullVideo.pause();
-      fullVideo.currentTime = 0;
-      fullVideo.src = "";
+        videoViewer.style.display = 'none';
+        fullVideo.pause();
+        fullVideo.currentTime = 0;
+        fullVideo.src = '';
     }
-  }
+}
+
+// ==================== Gallery Scroll Buttons ====================
+document.querySelector('.scroll-btn.left').onclick = () => {
+    document.querySelector('.image-scroll').scrollBy({ left: -300, behavior: 'smooth' });
+};
+document.querySelector('.scroll-btn.right').onclick = () => {
+    document.querySelector('.image-scroll').scrollBy({ left: 300, behavior: 'smooth' });
+};
+
+// ==================== Review Form Modal ====================
+function openReviewForm() {
+    document.getElementById('reviewFormContainer').style.display = 'flex';
+}
+
+function closeReviewForm() {
+    document.getElementById('reviewFormContainer').style.display = 'none';
+}
+
+// ==================== Firebase Review Integration ====================
+const firebaseConfig = {
+  apiKey: "AIzaSyBz7GyOne3f2R2KJGdrNNQn4UKoUtWiBv0",
+  authDomain: "gourav-butique.firebaseapp.com",
+  databaseURL: "https://gourav-butique-default-rtdb.firebaseio.com",
+  projectId: "gourav-butique",
+  storageBucket: "gourav-butique.firebasestorage.app",
+  messagingSenderId: "608795847733",
+  appId: "1:608795847733:web:9d5e19fcc8e456e1e6557c",
+  measurementId: "G-L2CYL0HQ1F"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const reviewsRef = database.ref('reviews');
+
+// ==================== Star Rating ====================
+let selectedStars = 0;
+const stars = document.querySelectorAll('#starRating span');
+
+stars.forEach(star => {
+    star.addEventListener('mouseover', () => {
+        highlightStars(parseInt(star.dataset.value));
+    });
+    star.addEventListener('mouseout', () => {
+        highlightStars(selectedStars);
+    });
+    star.addEventListener('click', () => {
+        selectedStars = parseInt(star.dataset.value);
+        highlightStars(selectedStars);
+    });
+});
+
+function highlightStars(count) {
+    stars.forEach(star => {
+        if (parseInt(star.dataset.value) <= count) {
+            star.textContent = '★';
+            star.style.color = '#ffbf00';
+        } else {
+            star.textContent = '☆';
+            star.style.color = '#888';
+        }
+    });
+}
+
+// ==================== Submit Review ====================
+function submitReview() {
+    const name = document.getElementById('reviewerName').value.trim();
+    const starsValue = selectedStars;
+    const message = document.getElementById('reviewMessage').value.trim();
+
+    if (!name || starsValue === 0 || !message) {
+        alert("Please fill all fields correctly!");
+        return;
+    }
+
+    const newReview = {
+        name,
+        stars: starsValue,
+        message,
+        date: new Date().toISOString()
+    };
+
+    reviewsRef.push(newReview, err => {
+        if (err) {
+            alert("Error submitting review: " + err);
+        } else {
+            alert("Thank you for your review!");
+            closeReviewForm();
+            document.getElementById('reviewerName').value = '';
+            selectedStars = 0;
+            highlightStars(0);
+            document.getElementById('reviewMessage').value = '';
+        }
+    });
+}
+
+// ==================== Load Reviews ====================
+const reviewsContainer = document.getElementById('reviewsContainer');
+reviewsRef.on('value', snapshot => {
+    reviewsContainer.innerHTML = '';
+    snapshot.forEach(childSnapshot => {
+        const review = childSnapshot.val();
+        const div = document.createElement('div');
+        div.style.border = "1px solid #00c6a7";
+        div.style.padding = "15px";
+        div.style.margin = "10px 0";
+        div.style.borderRadius = "10px";
+        div.innerHTML = `<strong>${review.name}</strong> (${review.stars}⭐)<br>${review.message}`;
+        reviewsContainer.appendChild(div);
+    });
+});
 </script>
-
-
 </body>
-</html>
+  </html>
