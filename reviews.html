@@ -138,6 +138,37 @@
 #closeVideoBtn:hover {
   color: red;
 }
+.video-thumbnail {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.video-thumbnail img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
+  aspect-ratio: 9 / 16;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  padding: 16px 24px;
+  pointer-events: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
   </style>
 </head>
 <body>
@@ -206,10 +237,10 @@
 
 <section class="video-section" id="video">
   <h2>See Our Work</h2>
-  <video class="preview-video" muted loop>
-    <source src="https://deckenstore.github.io/image-host/week.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <div class="video-thumbnail" onclick="openVideoViewer()">
+    <img src="https://deckenstore.github.io/image-host/file_00000000e8a861faa4ca8c86f5d1b7e5.png" alt="Video Thumbnail">
+    <div class="play-button">&#9658;</div>
+  </div>
 </section>
 
 
@@ -265,36 +296,39 @@
   }
 
   // Gallery scroll buttons
-  document.querySelector('.scroll-btn.left').onclick = () => document.querySelector('.image-scroll').scrollBy({left:-300, behavior:'smooth'});
-  document.querySelector('.scroll-btn.right').onclick = () => document.querySelector('.image-scroll').scrollBy({left:300, behavior:'smooth'});
+  document.querySelector('.scroll-btn.left').onclick = () =>
+    document.querySelector('.image-scroll').scrollBy({left: -300, behavior: 'smooth'});
+
+  document.querySelector('.scroll-btn.right').onclick = () =>
+    document.querySelector('.image-scroll').scrollBy({left: 300, behavior: 'smooth'});
 
   // Back to top button
   const backTop = document.getElementById('backTop');
   window.addEventListener('scroll', () => {
     backTop.style.display = window.scrollY > 300 ? 'block' : 'none';
   });
-  backTop.onclick = () => window.scrollTo({top:0, behavior:'smooth'});
+  backTop.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+
   // Fullscreen video viewer
-const videoViewer = document.getElementById('videoViewer');
-const fullVideo = document.getElementById('fullVideo');
+  const videoViewer = document.getElementById('videoViewer');
+  const fullVideo = document.getElementById('fullVideo');
 
-document.querySelectorAll('.preview-video').forEach(video => {
-  video.addEventListener('click', () => {
-    const source = video.querySelector('source').src;
-    fullVideo.src = source;
-    fullVideo.load();
+  function openVideoViewer() {
+    fullVideo.src = "https://deckenstore.github.io/image-host/week.mp4"; // ✅ Make sure this file is in the same folder as your HTML
     videoViewer.style.display = 'flex';
-  });
-});
-
-function closeVideoViewer(e) {
-  if (e.target === videoViewer || e.target === document.getElementById('closeVideoBtn')) {
-    videoViewer.style.display = 'none';
-    fullVideo.pause();
-    fullVideo.src = "";
+    fullVideo.play();
   }
+
+  function closeVideoViewer(e) {
+    if (e.target === videoViewer || e.target === document.getElementById('closeVideoBtn')) {
+      videoViewer.style.display = 'none';
+      fullVideo.pause();
+      fullVideo.currentTime = 0;
+      fullVideo.src = "";
+    }
   }
 </script>
+
 
 </body>
 </html>
