@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Modeling | Gourav Boutique</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+<link rel="stylesheet" href="post-style.css">
+</head>
+<body>
+  
+  <!-- Top Banner -->
+<header>
+  <h2>Post by Gourav Boutique</h2>
+  <p>Professional Stitching & Custom Tailoring Services</p>
+  <a href="https://wa.me/919988720946?text=Hello%20Gourav%20Boutique%21%20I%20saw%20your%20website%20and%20I%20am%20interested%20in%20booking%20a%20custom%20stitching%20service%20for%20my%20clothes.%20Please%20guide%20me%20with%20details%2C%20pricing%2C%20and%20availability.%20Thank%20you%21" 
+   class="button" target="_blank">Book Your Service</a>
+</header>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-container">
+    <div class="logo"><h1>Gourav Boutique</h1></div>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index">Home</a>
+      <a href="index#about">About</a>
+      <a href="index#services">Services</a>
+      <a href="index#contact">Contact</a>
+      <a href="reviews">Reviews</a>
+    </div>
+  </div>
+</nav>
+
+<section class="gallery-section">
+  <h2>AI Modeling</h2>
+  <button class="scroll-btn left">&#8592;</button>
+  <div class="image-scroll" id="imageScroll"></div>
+  <button class="scroll-btn right">&#8594;</button>
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <img id="modalImage" src="">
+    <h3 id="modalCaption"></h3>
+    <p class="author" id="modalAuthor"></p>
+
+    <!-- Actions: Like, Comment, Share -->
+    <div class="actions">
+      <button id="modalLikeBtn">❤️</button><span id="modalLikeCount">0</span>
+      <button id="modalCommentBtn">💬</button>
+      <button id="modalShareBtn">🔁</button>
+    </div>
+
+    <!-- Comment section -->
+    <div class="comments" id="modalComments"></div>
+<!-- Input for posting comment -->
+<div class="comment-box" id="commentBox">
+  <input type="text" id="modalCommentName" placeholder="Your name...">
+  <input type="text" id="modalCommentInput" placeholder="Add a comment...">
+  <button id="modalPostBtn">Post</button>
+</div>
+
+  </div>
+</div>
+
+  <div class="cta-container" id="ctaContainer">
+    <div class="cta-toggle" id="ctaToggle">
+      <i class="fas fa-plus"></i>
+    </div>
+    <div class="cta-buttons">
+      <a href="https://wa.me/919988720946" target="_blank" class="cta-btn whatsapp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="tel:+919988720946" class="cta-btn call">
+        <i class="fas fa-phone"></i>
+      </a>
+    </div>
+  </div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Gourav Boutique | All Rights Reserved</p>
+</footer>
+
+
+<script src="post-script.js" type="module"></script>
+
+</body>
+</html>
