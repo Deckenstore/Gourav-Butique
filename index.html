@@ -256,6 +256,59 @@
       .services { gap:20px; }
       section h2 { font-size:1.7rem; }
     }
+    /* Instagram Section */
+section .insta-button {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(15,255,216,0.8), rgba(0,119,99,0.9));
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,119,99,0.25);
+  transition: all 0.4s ease;
+  margin: 10px auto 30px;
+  display: block;
+  text-align: center;
+}
+section .insta-button:hover {
+  background: linear-gradient(135deg, rgba(0,119,99,1), rgba(15,255,216,0.7));
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,119,99,0.35);
+}
+
+/* Instagram Embed Box */
+section iframe {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  width: 90%;
+  max-width: 600px;
+  height: 550px;
+  border-radius: 20px;
+  background: rgba(15,255,216,0.3);
+  box-shadow: 0 12px 35px rgba(0,119,99,0.25);
+  transition: all 0.4s ease;
+}
+section iframe:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 45px rgba(0,119,99,0.35);
+}
+
+/* Responsive for mobile */
+@media(max-width:480px){
+  section .insta-button {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  section iframe {
+    height: 450px;
+    width: 95%;
+  }
+}
   </style>
 </head>
 <body>
@@ -314,6 +367,37 @@
   </div>
 </section>
 
+<section style="text-align:center; padding:50px 20px;">
+  <!-- Instagram Embed -->
+  <iframe src="https://www.instagram.com/gourav__boutique/embed" height="600"></iframe>
+  
+  <br>
+  
+  <!-- Instagram App Deep Link Button -->
+  <button class="insta-button" onclick="openInstagram()">
+    Continue on Instagram
+  </button>
+</section>
+
+<script>
+function openInstagram() {
+  // Try to open the Instagram app directly
+  const appLink = "instagram://user?username=gourav__boutique";
+  const webLink = "https://www.instagram.com/gourav__boutique";
+
+  // Create a hidden link
+  const iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  iframe.src = appLink;
+  document.body.appendChild(iframe);
+
+  // Fallback to browser if app not installed (after 1.5s)
+  setTimeout(() => {
+    window.location.href = webLink;
+  }, 1500);
+}
+</script>
+
 <!-- Contact -->
 <section id="contact">
   <div class="card contact-card">
@@ -343,4 +427,4 @@ function toggleMenu(){
 </script>
 
 </body>
-      </html>
+  </html>
