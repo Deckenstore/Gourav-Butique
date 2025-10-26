@@ -183,6 +183,104 @@
   </div>
 </section>
 
+<style>
+    /* ===== Floating CTA Base ===== */
+    .cta-container {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 999;
+    }
+
+    .cta-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #00775f;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .cta-toggle.rotate {
+      transform: rotate(45deg);
+      background: #004d40;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      gap: 12px;
+    }
+
+    .cta-container.active .cta-buttons {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-10px);
+    }
+
+    .cta-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: white;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .cta-btn.whatsapp {
+      background: #25d366;
+    }
+
+    .cta-btn.call {
+      background: #007aff;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.1);
+    }
+  </style>
+
+  <div class="cta-container" id="ctaContainer">
+    <div class="cta-toggle" id="ctaToggle">
+      <i class="fas fa-plus"></i>
+    </div>
+    <div class="cta-buttons">
+      <a href="https://wa.me/919999999999" target="_blank" class="cta-btn whatsapp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="tel:+919999999999" class="cta-btn call">
+        <i class="fas fa-phone"></i>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById("ctaToggle");
+    const container = document.getElementById("ctaContainer");
+
+    toggle.addEventListener("click", () => {
+      container.classList.toggle("active");
+      toggle.classList.toggle("rotate");
+    });
+  </script>
+  
 <!-- Footer -->
 <footer id="contact">
   <p>&copy; 2025 Gourav Boutique | All Rights Reserved</p>
