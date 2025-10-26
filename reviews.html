@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Customer Reviews | Gourav Boutique</title>
-   <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Reviews | Gourav Boutique</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
     /* Base Styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Poppins', sans-serif; background: rgb(226,255,250); color: #333; line-height: 1.6; scroll-behavior: smooth; }
@@ -105,11 +102,9 @@
       .video-section .video-thumbnail img{height:220px;}
       .image-scroll img{height:280px;}
     }
-  </style>
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</style>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 <body>
 
@@ -127,338 +122,126 @@
     <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
-      <a href="index.html#about">About</a>
       <a href="#reviews">Reviews</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#video">Video</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
 </nav>
 
 <!-- Reviews Section -->
 <section id="reviews">
-  <h2>What Our Clients Say</h2>
-  <div class="reviews" id="reviewsContainer"></div>
-  <div class="cta">
-    <button onclick="openReviewForm()">Give Your Review</button>
-  </div>
+<h2>What Our Clients Say</h2>
+<div class="reviews" id="reviewsContainer"></div>
+<div class="cta"><button onclick="openReviewForm()">Give Your Review</button></div>
 </section>
+
 <!-- Review Form Modal -->
 <div id="reviewFormContainer">
   <div id="reviewForm">
     <span id="closeFormBtn" onclick="closeReviewForm()">❌</span>
     <h3>Submit Your Review</h3>
     <input type="text" id="reviewerName" placeholder="Your Name" required>
-    
-    <!-- Star Rating -->
-    <div id="starRating" style="text-align:center; font-size:2rem; margin: 10px 0; cursor:pointer;">
+    <div id="starRating" style="text-align:center; font-size:2rem; margin:10px 0; cursor:pointer;">
       <span data-value="1">☆</span>
       <span data-value="2">☆</span>
       <span data-value="3">☆</span>
       <span data-value="4">☆</span>
       <span data-value="5">☆</span>
     </div>
-
     <textarea id="reviewMessage" placeholder="Your Review" rows="4" required></textarea>
     <button onclick="submitReview()">Submit</button>
   </div>
 </div>
 
 
-<!-- Image Gallery -->
-<section class="gallery-section" id="gallery">
-  <h2>AI Modeling</h2>
-  <button class="scroll-btn left">&#8592;</button>
-  <div class="image-scroll">
-
-  <button class="scroll-btn right">&#8594;</button>
-</section>
-
 <!-- Video Section -->
 <section class="video-section" id="video">
-  <h2>See Our Work</h2>
-  <div class="video-thumbnail" onclick="openVideoViewer()">
-    <img src="https://deckenstore.github.io/image-host/file_00000000e8a861faa4ca8c86f5d1b7e5.png" alt="Video Thumbnail">
-    <div class="play-button">&#9658;</div>
-  </div>
+<h2>See Our Work</h2>
+<div class="video-thumbnail" onclick="openVideoViewer()">
+<img src="https://deckenstore.github.io/image-host/file_00000000e8a861faa4ca8c86f5d1b7e5.png" alt="Video Thumbnail">
+<div class="play-button">&#9658;</div>
+</div>
 </section>
 
-<style>
-    /* ===== Floating CTA Base ===== */
-    .cta-container {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      z-index: 999;
-    }
-
-    .cta-toggle {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #00775f;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-      transition: transform 0.3s ease;
-    }
-
-    .cta-toggle.rotate {
-      transform: rotate(45deg);
-      background: #004d40;
-    }
-
-    .cta-buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: absolute;
-      bottom: 70px;
-      right: 0;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s ease;
-      gap: 12px;
-    }
-
-    .cta-container.active .cta-buttons {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(-10px);
-    }
-
-    .cta-btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      color: white;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .cta-btn.whatsapp {
-      background: #25d366;
-    }
-
-    .cta-btn.call {
-      background: #007aff;
-    }
-
-    .cta-btn:hover {
-      transform: scale(1.1);
-    }
-  </style>
-
-  <div class="cta-container" id="ctaContainer">
-    <div class="cta-toggle" id="ctaToggle">
-      <i class="fas fa-plus"></i>
-    </div>
-    <div class="cta-buttons">
-      <a href="https://wa.me/919999999999" target="_blank" class="cta-btn whatsapp">
-        <i class="fab fa-whatsapp"></i>
-      </a>
-      <a href="tel:+919999999999" class="cta-btn call">
-        <i class="fas fa-phone"></i>
-      </a>
-    </div>
-  </div>
-
-  <script>
-    const toggle = document.getElementById("ctaToggle");
-    const container = document.getElementById("ctaContainer");
-
-    toggle.addEventListener("click", () => {
-      container.classList.toggle("active");
-      toggle.classList.toggle("rotate");
-    });
-  </script>
-  
 <!-- Footer -->
 <footer id="contact">
-  <p>&copy; 2025 Gourav Boutique | All Rights Reserved</p>
+<p>&copy; 2025 Gourav Boutique | All Rights Reserved</p>
 </footer>
 
 <!-- Fullscreen Image & Video Viewer -->
 <div id="imageViewer" onclick="closeImageViewer(event)">
-  <span id="closeBtn" onclick="closeImageViewer(event)">❌</span>
-  <img id="fullImage" src="" alt="Full View">
+<span id="closeBtn" onclick="closeImageViewer(event)">❌</span>
+<img id="fullImage" src="" alt="Full View">
 </div>
 <div id="videoViewer" onclick="closeVideoViewer(event)">
-  <span id="closeVideoBtn" onclick="closeVideoViewer(event)">❌</span>
-  <video id="fullVideo" controls autoplay></video>
+<span id="closeVideoBtn" onclick="closeVideoViewer(event)">❌</span>
+<video id="fullVideo" controls autoplay></video>
 </div>
 
-<!-- Back to Top 
-<div id="backTop">⬆</div>
--->
-
 <script>
-// ==================== Hamburger Menu ====================
-function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('show');
-}
+  // Hamburger Menu
+  function toggleMenu(){document.getElementById('navLinks').classList.toggle('show');}
 
-// ==================== Back to Top ====================
-const backTop = document.getElementById('backTop');
-window.addEventListener('scroll', () => {
-    backTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-});
-backTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Fullscreen Image
+  const imageViewer = document.getElementById('imageViewer');
+  const fullImage = document.getElementById('fullImage');
+  document.querySelectorAll('.image-scroll img').forEach(img=>{img.addEventListener('click',()=>{fullImage.src=img.src;imageViewer.style.display='flex';});});
+  function closeImageViewer(e){if(e.target===imageViewer||e.target===document.getElementById('closeBtn')){imageViewer.style.display='none';fullImage.src='';}}
 
-// ==================== Fullscreen Image Viewer ====================
-const imageViewer = document.getElementById('imageViewer');
-const fullImage = document.getElementById('fullImage');
+  // Fullscreen Video
+  const videoViewer=document.getElementById('videoViewer');
+  const fullVideo=document.getElementById('fullVideo');
+  function openVideoViewer(){fullVideo.src="https://deckenstore.github.io/image-host/week.mp4";videoViewer.style.display='flex';fullVideo.play();}
+  function closeVideoViewer(e){if(e.target===videoViewer||e.target===document.getElementById('closeVideoBtn')){videoViewer.style.display='none';fullVideo.pause();fullVideo.currentTime=0;fullVideo.src='';}}
 
-document.querySelectorAll('.image-scroll img').forEach(img => {
-    img.addEventListener('click', () => {
-        fullImage.src = img.src;
-        imageViewer.style.display = 'flex';
+  // Review Form
+  function openReviewForm(){document.getElementById('reviewFormContainer').style.display='flex';}
+  function closeReviewForm(){document.getElementById('reviewFormContainer').style.display='none';}
+
+  // Firebase
+  const firebaseConfig={apiKey:"AIzaSyBz7GyOne3f2R2KJGdrNNQn4UKoUtWiBv0",authDomain:"gourav-butique.firebaseapp.com",databaseURL:"https://gourav-butique-default-rtdb.firebaseio.com",projectId:"gourav-butique",storageBucket:"gourav-butique.firebasestorage.app",messagingSenderId:"608795847733",appId:"1:608795847733:web:9d5e19fcc8e456e1e6557c",measurementId:"G-L2CYL0HQ1F"};
+  firebase.initializeApp(firebaseConfig);
+  const database=firebase.database();
+  const reviewsRef=database.ref('reviews');
+
+  // Star Rating
+  let selectedStars=0;
+  const stars=document.querySelectorAll('#starRating span');
+  stars.forEach(star=>{star.addEventListener('mouseover',()=>{highlightStars(parseInt(star.dataset.value));});star.addEventListener('mouseout',()=>{highlightStars(selectedStars);});star.addEventListener('click',()=>{selectedStars=parseInt(star.dataset.value);highlightStars(selectedStars);});});
+  function highlightStars(count){stars.forEach(star=>{if(parseInt(star.dataset.value)<=count){star.textContent='★';star.style.color='#ffbf00';}else{star.textContent='☆';star.style.color='#888';}});}
+
+  // Submit Review
+  function submitReview(){
+    const name=document.getElementById('reviewerName').value.trim();
+    const starsValue=selectedStars;
+    const message=document.getElementById('reviewMessage').value.trim();
+    if(!name||starsValue===0||!message){alert("Please fill all fields correctly!");return;}
+    const newReview={name,stars:starsValue,message,date:new Date().toISOString()};
+    reviewsRef.push(newReview);
+    document.getElementById('reviewerName').value='';
+    document.getElementById('reviewMessage').value='';
+    selectedStars=0;
+    highlightStars(0);
+    closeReviewForm();
+  }
+
+  // Load Reviews
+  const reviewsContainer=document.getElementById('reviewsContainer');
+  reviewsRef.on('value',snapshot=>{
+    reviewsContainer.innerHTML='';
+    snapshot.forEach(child=>{
+      const data=child.val();
+      const div=document.createElement('div');
+      div.style.background='rgba(15,255,216,0.2)';
+      div.style.padding='12px 18px';
+      div.style.margin='12px 0';
+      div.style.borderRadius='12px';
+      div.innerHTML=`<strong>${data.name}</strong> - ${'★'.repeat(data.stars)}<p>${data.message}</p>`;
+      reviewsContainer.appendChild(div);
     });
-});
-
-function closeImageViewer(e) {
-    if (e.target === imageViewer || e.target === document.getElementById('closeBtn')) {
-        imageViewer.style.display = 'none';
-        fullImage.src = '';
-    }
-}
-
-// ==================== Fullscreen Video Viewer ====================
-const videoViewer = document.getElementById('videoViewer');
-const fullVideo = document.getElementById('fullVideo');
-
-function openVideoViewer() {
-    fullVideo.src = "https://deckenstore.github.io/image-host/week.mp4";
-    videoViewer.style.display = 'flex';
-    fullVideo.play();
-}
-
-function closeVideoViewer(e) {
-    if (e.target === videoViewer || e.target === document.getElementById('closeVideoBtn')) {
-        videoViewer.style.display = 'none';
-        fullVideo.pause();
-        fullVideo.currentTime = 0;
-        fullVideo.src = '';
-    }
-}
-
-// ==================== Gallery Scroll Buttons ====================
-document.querySelector('.scroll-btn.left').onclick = () => {
-    document.querySelector('.image-scroll').scrollBy({ left: -300, behavior: 'smooth' });
-};
-document.querySelector('.scroll-btn.right').onclick = () => {
-    document.querySelector('.image-scroll').scrollBy({ left: 300, behavior: 'smooth' });
-};
-
-// ==================== Review Form Modal ====================
-function openReviewForm() {
-    document.getElementById('reviewFormContainer').style.display = 'flex';
-}
-
-function closeReviewForm() {
-    document.getElementById('reviewFormContainer').style.display = 'none';
-}
-
-// ==================== Firebase Review Integration ====================
-const firebaseConfig = {
-  apiKey: "AIzaSyBz7GyOne3f2R2KJGdrNNQn4UKoUtWiBv0",
-  authDomain: "gourav-butique.firebaseapp.com",
-  databaseURL: "https://gourav-butique-default-rtdb.firebaseio.com",
-  projectId: "gourav-butique",
-  storageBucket: "gourav-butique.firebasestorage.app",
-  messagingSenderId: "608795847733",
-  appId: "1:608795847733:web:9d5e19fcc8e456e1e6557c",
-  measurementId: "G-L2CYL0HQ1F"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-const reviewsRef = database.ref('reviews');
-
-// ==================== Star Rating ====================
-let selectedStars = 0;
-const stars = document.querySelectorAll('#starRating span');
-
-stars.forEach(star => {
-    star.addEventListener('mouseover', () => {
-        highlightStars(parseInt(star.dataset.value));
-    });
-    star.addEventListener('mouseout', () => {
-        highlightStars(selectedStars);
-    });
-    star.addEventListener('click', () => {
-        selectedStars = parseInt(star.dataset.value);
-        highlightStars(selectedStars);
-    });
-});
-
-function highlightStars(count) {
-    stars.forEach(star => {
-        if (parseInt(star.dataset.value) <= count) {
-            star.textContent = '★';
-            star.style.color = '#ffbf00';
-        } else {
-            star.textContent = '☆';
-            star.style.color = '#888';
-        }
-    });
-}
-
-// ==================== Submit Review ====================
-function submitReview() {
-    const name = document.getElementById('reviewerName').value.trim();
-    const starsValue = selectedStars;
-    const message = document.getElementById('reviewMessage').value.trim();
-
-    if (!name || starsValue === 0 || !message) {
-        alert("Please fill all fields correctly!");
-        return;
-    }
-
-    const newReview = {
-        name,
-        stars: starsValue,
-        message,
-        date: new Date().toISOString()
-    };
-
-    reviewsRef.push(newReview, err => {
-        if (err) {
-            alert("Error submitting review: " + err);
-        } else {
-            alert("Thank you for your review!");
-            closeReviewForm();
-            document.getElementById('reviewerName').value = '';
-            selectedStars = 0;
-            highlightStars(0);
-            document.getElementById('reviewMessage').value = '';
-        }
-    });
-}
-
-// ==================== Load Reviews ====================
-const reviewsContainer = document.getElementById('reviewsContainer');
-reviewsRef.on('value', snapshot => {
-    reviewsContainer.innerHTML = '';
-    snapshot.forEach(childSnapshot => {
-        const review = childSnapshot.val();
-        const div = document.createElement('div');
-        div.style.border = "1px solid #00c6a7";
-        div.style.padding = "15px";
-        div.style.margin = "10px 0";
-        div.style.borderRadius = "10px";
-        div.innerHTML = `<strong>${review.name}</strong> (${review.stars}⭐)<br>${review.message}`;
-        reviewsContainer.appendChild(div);
-    });
-});
+  });
 </script>
 </body>
-  </html>
+      </html>
